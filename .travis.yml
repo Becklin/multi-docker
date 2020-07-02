@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t beck/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t beckdocker/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run beck/react-test npm test -- --coverage
+  - docker run beckdocker/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t beck/multi-client ./client
-  - docker build -t beck/multi-nginx ./nginx
-  - docker build -t beck/multi-server ./server
-  - docker build -t beck/multi-worker ./worker
+  - docker build -t beckdocker/multi-client ./client
+  - docker build -t beckdocker/multi-nginx ./nginx
+  - docker build -t beckdocker/multi-server ./server
+  - docker build -t beckdocker/multi-worker ./worker
   # Login to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take those images and pish them to the docker hub
-  - docker push beck/multi-client
-  - docker push beck/multi-nginx
-  - docker push beck/multi-server
-  - docker push beck/multi-worker
+  - docker push beckdocker/multi-client
+  - docker push beckdocker/multi-nginx
+  - docker push beckdocker/multi-server
+  - docker push beckdocker/multi-worker
