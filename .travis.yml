@@ -13,7 +13,7 @@ after_success:
   - docker build -t beckdocker/multi-nginx ./nginx
   - docker build -t beckdocker/multi-server ./server
   - docker build -t beckdocker/multi-worker ./worker
-  # Login to the docker CLI
+  # Login to the  docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take those images and pish them to the docker hub
   - docker push beckdocker/multi-client
